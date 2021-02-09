@@ -18,8 +18,8 @@
         <!-- question.subject, create_date == model.py에서 가져온 것 -->
         <li>
             <!-- url 네임스페이스 - 'main:url 이름' 모델 객체 -->
-            <a href="{% url 'main:detail' question.id %}"> {{ question.subject }} <span>{{ question.create_date
-                    }}</span></a>
+            <a href="{% url 'main:detail' question.id %}"> {{ question.subject }}
+                <span>{{question.create_date}}</span></a>
         </li>
         {% endfor %}
     </ul>
