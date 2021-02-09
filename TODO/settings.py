@@ -55,7 +55,8 @@ ROOT_URLCONF = 'TODO.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 비어있는 DIRS []칸에 BASE_DIR / 'templates' 적어주기
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -12,4 +12,4 @@ def index(request):
     # 'question_list' == object, 그냥 question_list == value
     context = {'question_list': question_list}
     # html에 출력하기 - render 함수는 context에 있는 Question 모델 데이터 question_list를 main/ question 파일에 적용하여 HTML 코드로 변환한다. 
-    return HttpResponse(request, "main/question_list.html", context)
+    return render(request, "main/question_list.html", context)

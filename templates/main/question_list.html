@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 21/02/09 question template -->
+    <!-- 만약에 question_list가 있다면 -->
+    {% if question_list %}
+    <ul>
+        <!-- question_list를 반복하여 변수 question에 대입 -->
+        {% for question in question_list %}
+        <li><a href="/main/{{ question.id }}/">{{ question.subject }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p> 질문이 없습니다.</p>
+    {% endif %}
+</body>
+
+</html>
