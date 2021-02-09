@@ -13,3 +13,12 @@ def index(request):
     context = {'question_list': question_list}
     # html에 출력하기 - render 함수는 context에 있는 Question 모델 데이터 question_list를 main/ question 파일에 적용하여 HTML 코드로 변환한다. 
     return render(request, "main/question_list.html", context)
+    
+# html에서 question_list 선택했을 때 detail페이지 만들어주기
+# url에서 만든 question_id 값 가져오기
+def detail(request, question_id):
+    # get 방식을 사용하여 question 객체 가져오기
+    question = Question.objects.get(id = question_id)
+    context = {'question': question}
+    return render(request, 'main/question_detail.html', context)
+

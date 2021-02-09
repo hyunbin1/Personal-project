@@ -15,7 +15,8 @@
     <ul>
         <!-- question_list를 반복하여 변수 question에 대입 -->
         {% for question in question_list %}
-        <li><a href="/main/{{ question.id }}/">{{ question.subject }}</a></li>
+        <!-- question.subject, create_date == model.py에서 가져온 것 -->
+        <li><a href="/main/{{ question.id }}/">{{ question.subject }}{{ question.create_date }}</a></li>
         {% endfor %}
     </ul>
     {% else %}
