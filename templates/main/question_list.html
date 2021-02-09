@@ -16,7 +16,11 @@
         <!-- question_list를 반복하여 변수 question에 대입 -->
         {% for question in question_list %}
         <!-- question.subject, create_date == model.py에서 가져온 것 -->
-        <li><a href="/main/{{ question.id }}/">{{ question.subject }}{{ question.create_date }}</a></li>
+        <li>
+            <!-- url 네임스페이스 - 'main:url 이름' 모델 객체 -->
+            <a href="{% url 'main:detail' question.id %}"> {{ question.subject }} <span>{{ question.create_date
+                    }}</span></a>
+        </li>
         {% endfor %}
     </ul>
     {% else %}
