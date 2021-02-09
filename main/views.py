@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 # Question 모델 첨가
 from .models import Question
@@ -17,8 +17,8 @@ def index(request):
 # html에서 question_list 선택했을 때 detail페이지 만들어주기
 # url에서 만든 question_id 값 가져오기
 def detail(request, question_id):
-    # get 방식을 사용하여 question 객체 가져오기
-    question = Question.objects.get(id = question_id)
+    # get 방식을 사용하여 question 객체 가져오기 - 객체가 존재하지 않는다면 404페이지 뜨게하기
+    question = get_object_or_404(Question, pk=question_id)
     context = {'question': question}
     return render(request, 'main/question_detail.html', context)
 
