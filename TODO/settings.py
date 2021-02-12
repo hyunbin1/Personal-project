@@ -120,3 +120,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# 21/02/12 스테틱 추가
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
