@@ -14,6 +14,17 @@
     <div>
         {{question.content}}
     </div>
+    <!-- 21/02/12 등록한 답변 표시 -->
+    <h5>{{question.answer_set.count}}개의 답변이 있습니다. </h5>
+    <div>
+        <ul>
+            {% for answer in question.answer_set.all %}
+            <!-- 답변 내용 -->
+            <li>{{answer.content}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
     <!-- 21/02/12 답변 등록 기능 -->
     <form action="{% url 'main:answer_create' question.id %}" method="POST">
         <!-- form 아래 꼭 넣어줘야되는 토큰 - 해킹방지 -->
