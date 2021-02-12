@@ -9,11 +9,18 @@
 </head>
 
 <body>
-    <!-- 21/02/09 -->
+    <!-- 21/02/09 상세 페이지 -->
     <h1>{{question.subject}}</h1>
     <div>
         {{question.content}}
     </div>
+    <!-- 21/02/12 답변 등록 기능 -->
+    <form action="{% url 'main:answer_create' question.id %}" method="POST">
+        <!-- form 아래 꼭 넣어줘야되는 토큰 - 해킹방지 -->
+        {% csrf_token %}
+        <textarea name="content" id="content" rows="15"></textarea>
+        <input type="submit" value="답변등록">
+    </form>
 </body>
 
 </html>
