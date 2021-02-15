@@ -5,11 +5,7 @@
     <h5 class="my-3 border-bottom pb-2">질문등록</h5>
     <form method="post" class="post-form my-3">
         {% csrf_token %}
-        <p><label for="id_subject">Subject:</label> <input type="text" name="subject" maxlength="200" required
-                id="id_subject"></p>
-        <p><label for="id_content">Content:</label> <textarea name="content" cols="40" rows="10" required
-                id="id_content">
-        </textarea></p>
+        {{ form.as_p }}
         <button type="submit" class="btn btn-primary">저장하기</button>
     </form>
 </div>
