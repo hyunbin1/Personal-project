@@ -41,3 +41,9 @@ def answer_create(request, question_id):
     # answer.save()
     # 치아점은 answer이라는 변수 하나를 추가해주어 save를 추가해준것. 
     return redirect('main:detail', question_id = question_id)
+
+
+# 21/02/15 질문 등록하기
+def question_create(request):
+    form = QuestionForm()
+    return render(request, 'main/question_form.html', {'form':form})

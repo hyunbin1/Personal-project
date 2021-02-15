@@ -10,9 +10,3 @@ class QuestionAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Question, QuestionAdmin)
 
-# Searching data at django admin page
-class AnswerAdmin(admin.ModelAdmin):
-    search_fields = ['subject']
-
-# Register your models here.
-admin.site.register(Answer, AnswerAdmin)
