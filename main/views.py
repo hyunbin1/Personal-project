@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .models import Answer, Question
 # 21/02/12 답변등록 - 입력시간 알려주기
 from django.utils import timezone
+from .forms import QuestionForm
 
 # Create your views here.
 # 21/02/09, Question 모델 데이터 작성일시 역순으로 조회하기 
@@ -13,7 +14,7 @@ def index(request):
     # 'question_list' == object, 그냥 question_list == value
     context = {'question_list': question_list}
     # html에 출력하기 - render 함수는 context에 있는 Question 모델 데이터 question_list를 main/ question 파일에 적용하여 HTML 코드로 변환한다. 
-    return render(request, "main/question_list.html", context)
+    return render(request, 'main/question_list.html', context)
     
 # 21/02/09, html에서 question_list 선택했을 때 detail페이지 만들어주기
 # url에서 만든 question_id 값 가져오기
@@ -45,5 +46,15 @@ def answer_create(request, question_id):
 
 # 21/02/15 질문 등록하기
 def question_create(request):
-    form = QuestionForm()
-    return render(request, 'main/question_form.html', {'form':form})
+    # 질문 목록 화면에서 질문 등록하기 버튼을 누르면 POST 방식이기 때문에 질문 추가로 이어진다.
+    if request.method == "POST":
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.create_date = timezone.now()
+            question.save()
+            return redirect('main:index')
+    else:
+        form = QuestionForm()
+    context = {'form':form}
+    return render(request, 'main/question_form.html', context)
