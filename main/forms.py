@@ -9,13 +9,15 @@ class QuestionForm(forms.ModelForm):
         model = Question
         # 제목과 이에 따른 내용
         fields = ['subject', 'content']
-        # form.as.p 부트스트렙 사용하는 법 - widgets 속성 사용하기
-        widgets = {
-            'subject': forms.TextInput(attrs={'class': 'form-control'}),
-            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
-        }
-        # label 속성 한글로 수정
         labels ={
             'subject': '제목',
             'content': '내용',
         }
+
+        # form.as_p 부트스트렙 사용하는 법 - widgets 속성 사용하기
+        # widgets = {
+        #     'subject': forms.TextInput(attrs={'class': 'form-control'}),
+        #     'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 10}),
+        # }
+
+        # label 속성 한글로 수정
