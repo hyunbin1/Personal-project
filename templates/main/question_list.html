@@ -26,6 +26,7 @@
             <!-- question_list를 반복하여 변수 question에 대입 -->
             {% for question in question_list %}
             <tr>
+                <!-- for ...에서 반복시 자동으로 매겨지는 순서값 = forloop.counter -->
                 <td>{{ forloop.counter }} </td>
                 <td>
                     <!-- question.subject, create_date는 model.py에서 가져온 것 -->
