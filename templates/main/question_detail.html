@@ -1,40 +1,59 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-{% load static %}
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Page</title>
+    <!-- 21/02/15 bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <!-- 21/02/12 CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
-    <!-- 21/02/09 상세 페이지 -->
-    <h1>{{question.subject}}</h1>
-    <div>
-        {{question.content}}
-    </div>
-    <!-- 21/02/12 등록한 답변 표시 -->
-    <h5>{{question.answer_set.count}}개의 답변이 있습니다. </h5>
-    <div>
-        <ul>
-            {% for answer in question.answer_set.all %}
-            <!-- 답변 내용 -->
-            <li>{{answer.content}}</li>
-            {% endfor %}
-        </ul>
-    </div>
+    <div class="container my-3">
+        <!-- 21/02/09 질문 제목 -->
+        <h2 class="border-bottom py-2">{{question.subject}}</h2>
+        <div class="card my-3">
+            <div class="card-body">
+                <!-- 21/02/09 질문 내용 -->
+                <div class="card-text" style="white-space: pre-line;">{{question.content}}</div>
+                <div class="d-flex justify-content-end">
+                    <div class="badge badge-light p-2">
+                        {{ question.create_date }}
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- 21/02/12 답변 등록 기능 -->
-    <form action="{% url 'main:answer_create' question.id %}" method="POST">
-        <!-- form 아래 꼭 넣어줘야되는 토큰 - 해킹방지 -->
-        {% csrf_token %}
-        <textarea name="content" id="content" rows="15"></textarea>
-        <input type="submit" value="답변등록">
-    </form>
+        <!-- 21/02/12 등록한 답변 표시 -->
+        <h5>{{question.answer_set.count}}개의 답변이 있습니다. </h5>
+        {% for answer in question.answer_set.all %}
+        <div class="card my-3">
+            <div class="card-body">
+                <!-- 21/02/09 답변 내용 -->
+                <div class="card-text" style="white-space: pre-line;">{{ answer.content }}</div>
+                <div class="d-flex justify-content-end">
+                    <div class="badge badge-light p-2">
+                        {{ answer.create_date }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- 21/02/12 답변 등록 기능 -->
+        <form action="{% url 'main:answer_create' question.id %}" method="POST" class="my-3">
+            <!-- form 아래 꼭 넣어줘야되는 토큰 - 해킹방지 -->
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea name="content" id="content" rows="10" class="form-control"></textarea>
+            </div>
+            <input type="submit" value="답변등록" class="btn btn-primary">
+        </form>
+    </div>
 </body>
 
 </html>

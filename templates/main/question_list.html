@@ -27,14 +27,16 @@
             {% for question in question_list %}
             <tr>
                 <!-- for ...에서 반복시 자동으로 매겨지는 순서값 = forloop.counter -->
+                <!-- th-1 (번호) -->
                 <td>{{ forloop.counter }} </td>
-                <td>
-                    <!-- question.subject, create_date는 model.py에서 가져온 것 -->
-                    <!-- url 네임스페이스 - 'main:url 이름' 모델 객체 -->
-                    <a href="{% url 'main:detail' question.id %}"> {{ question.subject }}</a>
-                </td>
+
+                <!-- th-2 (제목) -->
+                <!-- question.subject, create_date는 model.py에서 가져온 것 -->
+                <!-- url 네임스페이스 - 'main:url 이름' 모델 객체 -->
+                <td><a href="{% url 'main:detail' question.id %}"> {{ question.subject }}</a></td>
+
+                <!-- th-3 (작성일시) -->
                 <td>{{question.create_date}}</td>
-                </td>
             </tr>
             {% endfor %}
             {% else %}
