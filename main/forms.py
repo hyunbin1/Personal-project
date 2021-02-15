@@ -1,5 +1,5 @@
 from django import forms
-from main.models import Question
+from main.models import Question, Answer
 
 # 모델 폼 = 모델과 연결된 폼, 모델 폼 객체를 저장하면 연결된 모델의 데이터를 저장할 수 있다. 
 class QuestionForm(forms.ModelForm):
@@ -13,7 +13,6 @@ class QuestionForm(forms.ModelForm):
             'subject': '제목',
             'content': '내용',
         }
-
         # form.as_p 부트스트렙 사용하는 법 - widgets 속성 사용하기
         # widgets = {
         #     'subject': forms.TextInput(attrs={'class': 'form-control'}),
@@ -21,3 +20,12 @@ class QuestionForm(forms.ModelForm):
         # }
 
         # label 속성 한글로 수정
+
+# 21/02/15 답변 등록
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ['content']
+        labels = {
+            'content': '답변 내용'
+        }
