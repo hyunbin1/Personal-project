@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,27 +6,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 21/02/15 bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
     <title>Document</title>
 </head>
-
-<body>
-    <!-- 21/02/09 question template -->
-    <!-- 만약에 question_list가 있다면 -->
-    {% if question_list %}
-    <ul>
-        <!-- question_list를 반복하여 변수 question에 대입 -->
-        {% for question in question_list %}
-        <!-- question.subject, create_date == model.py에서 가져온 것 -->
-        <li>
-            <!-- url 네임스페이스 - 'main:url 이름' 모델 객체 -->
-            <a href="{% url 'main:detail' question.id %}"> {{ question.subject }}
-                <span>{{question.create_date}}</span></a>
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p> 질문이 없습니다.</p>
-    {% endif %}
-</body>
+<div class="container my-3">
+    <table class="table">
+        <thead>
+            <tr class="thead-dark">
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성일시</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 21/02/09 question template -->
+            <!-- 만약에 question_list가 있다면 -->
+            {% if question_list %}
+            <!-- question_list를 반복하여 변수 question에 대입 -->
+            {% for question in question_list %}
+            <tr>
+                <td>{{ forloop.counter }} </td>
+                <td>
+                    <!-- question.subject, create_date는 model.py에서 가져온 것 -->
+                    <!-- url 네임스페이스 - 'main:url 이름' 모델 객체 -->
+                    <a href="{% url 'main:detail' question.id %}"> {{ question.subject }}</a>
+                </td>
+                <td>{{question.create_date}}</td>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="3">질문이 없습니다.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
 
 </html>
