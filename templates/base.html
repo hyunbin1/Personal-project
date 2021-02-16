@@ -10,14 +10,22 @@
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
     <!-- 21/02/12 CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <title>COPY</title>
+    <title>Google</title>
 </head>
 
 <body>
+    {% include "navbar.html" %}
     <!-- 기본 템플릿 안에 삽입될 내용 Start -->
     {% block content %}
     {% endblock %}
     <!-- 기본 템플릿 안에 삽입될 내용 End -->
+
+
+    <!-- 21/02/16 js 파일 추가 -->
+    <!-- jQuery JS -->
+    <script src="{% static 'jquery-3.5.1.min.js' %}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{% static 'bootstrap.min.js' %}"></script>
 </body>
 
 </html>
