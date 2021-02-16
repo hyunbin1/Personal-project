@@ -39,7 +39,7 @@ def answer_create(request, question_id):
             answer.create_date = timezone.now()
             answer.question = question
             answer.save()
-        return redirect('main:detail', question_id = question_id)
+        return redirect('main:detail', question_id = question.id)
     else: 
         form = AnswerForm()
     context = {'question': question, 'form': form}
