@@ -1,3 +1,4 @@
+from django.core import paginator
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse
 # Question 모델 첨가
@@ -5,14 +6,22 @@ from .models import Answer, Question
 # 21/02/12 답변등록 - 입력시간 알려주기
 from django.utils import timezone
 from .forms import AnswerForm, QuestionForm
+# 21/02/19 페이징기능
+from django.core.paginator import Paginator
 
 # Create your views here.
 # 21/02/09, Question 모델 데이터 작성일시 역순으로 조회하기 
+# 21/02/19 페이징 처리 추가
 def index(request):
-    # 작성일시의 오름차순으로 목록 출력
+    # 21/02/19 입력파라미터
+    page = request.GET.get('page', '1') # 페이지
+    # 21/02/09 작성일시의 오름차순으로 목록 출력 - 조회
     question_list = Question.objects.order_by('-create_date')
+    # 21/02/19 페이징처리
+    paginator = Paginator(question_list, 10) # 페이지당 10개씩 보여주기
+    page_obj = paginator.get_page(page)
     # 'question_list' == object, 그냥 question_list == value
-    context = {'question_list': question_list}
+    context = {'question_list': page_obj}
     # html에 출력하기 - render 함수는 context에 있는 Question 모델 데이터 question_list를 main/ question 파일에 적용하여 HTML 코드로 변환한다. 
     return render(request, 'main/question_list.html', context)
     
