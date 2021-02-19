@@ -11,7 +11,7 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 # 21/02/09, Question 모델 데이터 작성일시 역순으로 조회하기 
-# 21/02/19 페이징 처리 추가
+# 21/02/19 페이징 처리 추가 https://wikidocs.net/71240 
 def index(request):
     # 21/02/19 입력파라미터
     page = request.GET.get('page', '1') # 페이지
