@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container my-3">
+    <form method="POST" class="post-form" action="{% url 'common:login' %}">
+        {% csrf_token %}
+        {% include "form_errors.html" %}
+        <div class="form-group">
+            <label for="username">사용자 ID</label>
+            <!-- 값이 none인 경우 default 값을 사용한다. -->
+            <input type="text" class="form-control" name="username" id="username"
+                vlaue="{{ form.username.value|default_if_none:'' }}">
+        </div>
+        <div class="form-group">
+            <label for="password">비밀번호</label>
+            <input for="password" class="form-control" name="password" id="password"
+                value="{{ form.password.vlaue|default_if_none:'' }}"></inpu>
+        </div>
+        <button type="submit" class="btn btn-primary">로그인</button>
+    </form>
+</div>
+{% endblock %}
